@@ -36,6 +36,19 @@ public class Users {
         database.insert(UserDbSchema.UserTable.NAME,null,values);
     }
 
+    public void editUser(User user) {
+
+        ContentValues values = getContentValues(user);
+        String where = String.format("%s = '%s'", UserDbSchema.UserTable.Cols.UUID, user.getUuid().toString());
+        database.update(UserDbSchema.UserTable.NAME, values,  where, null);
+
+    }
+
+    public void deleteUser(String uuid) {
+        String where = String.format("%s = '%s'", UserDbSchema.UserTable.Cols.UUID, uuid);
+        database.delete(UserDbSchema.UserTable.NAME, where, null);
+    }
+
     private static ContentValues getContentValues(User user){
         ContentValues values = new ContentValues();
         values.put(UserDbSchema.UserTable.Cols.UUID, user.getUuid().toString());

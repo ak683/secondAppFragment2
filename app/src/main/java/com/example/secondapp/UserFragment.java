@@ -27,6 +27,9 @@ public class UserFragment  extends Fragment {
     User user;
     TextView userInfo;
     Button buttonDel;
+    Button editBtn;
+    Button backBtn;
+    private int position;
     private SQLiteDatabase database;
 
 
@@ -45,7 +48,38 @@ public class UserFragment  extends Fragment {
         userInfo = view.findViewById(R.id.userInfo);
         userInfo.setText(user.getUserName()+" "+user.getUserLastName()+"\n"+user.getPhone());
         buttonDel = view.findViewById(R.id.buttonDel);
-        DeleteData();
+        editBtn = view.findViewById(R.id.editBtn);
+        backBtn = view.findViewById(R.id.backBtn);
+
+
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("DEBUG", "UserFragment.click(editBtn)");
+                Intent intent = new Intent(getActivity(), EditUserActivity.class);
+                intent.putExtra("position", position);
+                Log.d("DEBUG", "intent start EditUserActivity");
+                startActivity(intent);
+            }
+        });
+
+        buttonDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Users.get(getContext()).deleteUser(user.getUuid().toString());
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        //DeleteData();
 
 
         /*buttonDel.setOnClickListener(new View.OnClickListener() {
@@ -62,15 +96,15 @@ public class UserFragment  extends Fragment {
 
         return view;
 
-    }
-    public void DeleteData(){
+
+    /*public void DeleteData(){
         buttonDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Integer DeleteRow = database.delete(userInfo.getText().toString(),"Id = ?",new String[] {UUID});
             }
 
-            });
+            });  */
 
     }
 
