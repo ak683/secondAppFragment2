@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#F6F5EB">
 
     <TextView
         android:id="@+id/userInfo"
@@ -19,6 +20,7 @@
         android:id="@+id/buttonDel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#F44336"
         android:text="Удалить"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,23 +31,26 @@
         android:id="@+id/editBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#FFEB3B"
+        android:foregroundTint="#FFEB3B"
         android:text="Изменить"
-        app:layout_constraintBottom_toTopOf="@+id/userInfo"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDel"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Назад"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDel" />
-
-
+          android:id="@+id/backBtn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:backgroundTint="#03A9F4"
+          android:text="Назад"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/buttonDel" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
