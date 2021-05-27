@@ -1,5 +1,6 @@
 package com.example.secondapp;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +21,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.secondapp.database.UserDbSchema;
 
+import static com.example.secondapp.database.UserDbSchema.UserTable.Cols.UUID;
+
 public class UserFragment  extends Fragment {
     User user;
     TextView userInfo;
     Button buttonDel;
+    private SQLiteDatabase database;
 
 
 
@@ -41,25 +45,32 @@ public class UserFragment  extends Fragment {
         userInfo = view.findViewById(R.id.userInfo);
         userInfo.setText(user.getUserName()+" "+user.getUserLastName()+"\n"+user.getPhone());
         buttonDel = view.findViewById(R.id.buttonDel);
-        
+        DeleteData();
 
 
-        buttonDel.setOnClickListener(new View.OnClickListener() {
+        /*buttonDel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            delete();
+
 
             }
 
             private void delete() {
+
             }
-        });
-        
-
-
-
+        });*/
 
         return view;
+
+    }
+    public void DeleteData(){
+        buttonDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Integer DeleteRow = database.delete(userInfo.getText().toString(),"Id = ?",new String[] {UUID});
+            }
+
+            });
 
     }
 
